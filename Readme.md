@@ -39,9 +39,15 @@ Der Befehl **hdfs dfs -put** wird verwendet, um eine Datei von dem lokalen Datei
 ```bash
 hdfs dfs -put <lokaler_Pfad/zur/Datei> <Zielverzeichnis_im_HDFS>
 ```
-In dem Fall, um die Datei fluege.csv von PERSISTENT/WI2022F/BigData/PortofolioBigData/ in das HDFS-Verzeichnis input/ zu kopieren (Der Pfad muss beachtet angepasst werden), wird der folgende Befehl verwendet:
+In dem Fall, um die Datei fluege.csv von PERSISTENT/WI2022F/BigData/PortofolioBigData/ in das HDFS-Verzeichnis input/ zu kopieren **(Der Pfad muss beachtet angepasst werden)**, wird der folgende Befehl verwendet:
+
+In meinem Fall lautet der Befehl:
 ```bash
 hdfs dfs -put PERSISTENT/WI2022F/BigData/PortofolioBigData/fluege.csv input/fluege.csv
+```
+Im generellen Anwendungsfall wird der Befehl verwendet, wenn sich die Ausgabedatei direkt im Verzeichnis PERSISTENT befindet:
+```bash
+hdfs dfs -put PERSISTENT/PortofolioBigData/fluege.csv input/fluege.csv
 ```
 ### 5. Ausführen des Programms 1 (FlyPoint)
 
@@ -55,6 +61,12 @@ In dem Fall lautet der Befehl:
 hadoop jar PERSISTENT/WI2022F/BigData/PortofolioBigData/target/PortofolioBigData-1.jar FlyPoint input output
 ```
 
+Im generellen Anwendungsfall wird der Befehl verwendet, wenn sich die Ausgabedatei direkt im Verzeichnis PERSISTENT befindet:
+
+```bash
+hadoop jar PERSISTENT/PortofolioBigData/target/PortofolioBigData-1.jar FlyPoint input output
+```
+
 Dabei wird die JAR-Datei PortofolioBigData-1.jar mit der Hauptklasse FlyPoint ausgeführt, wobei die Eingabedaten aus dem Verzeichnis input im HDFS gelesen und die Ausgabedaten in das Verzeichnis output im HDFS geschrieben werden. es muss sichergestellt werden, dass die Eingabedaten vorhanden sind und das Ausgabeverzeichnis nicht bereits existiert.
 
 Falls Ausgabeverzeichnis existiert hat: [Löschen Verzeichnis](#löschen-der-output-verzeichnis)
@@ -66,10 +78,17 @@ Falls die JAR-Datei nicht vorhanden ist, müssen folgende Schritte durchgeführt
 
 ### 6. Ausführen des Programms 2 (FlyPointsGroup)
 Dabei wird ein nächste Programm ausgeführt. Dabei wird die JAR-Datei PortofolioBigData-1.jar mit der Hauptklasse FlyPointsGroup ausgeführt, wobei die Eingabedaten aus dem Verzeichnis output im HDFS gelesen und die Ausgabedaten in das Verzeichnis output2 im HDFS geschrieben werden.
-In dem Fall lautet der Befehl:
+
+In meinem Fall lautet der Befehl:
 ```bash
 hadoop jar PERSISTENT/WI2022F/BigData/PortofolioBigData/target/PortofolioBigData-1.jar FlyPointsGroup output output2
 ```
+Im generellen Anwendungsfall wird der Befehl verwendet, wenn sich die Ausgabedatei direkt im Verzeichnis PERSISTENT befindet:
+
+```bash
+hadoop jar PERSISTENT/PortofolioBigData/target/PortofolioBigData-1.jar FlyPointsGroup output output2
+```
+
 ### 7. Anzeige von Ergebnisse
 Um die Ergebnisse eines Hadoop-Jobs anzuzeigen, gibt es mehrere Möglichkeiten:
 
