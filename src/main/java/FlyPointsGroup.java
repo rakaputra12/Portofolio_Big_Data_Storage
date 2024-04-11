@@ -199,7 +199,7 @@ public class FlyPointsGroup {
         // Setzen des Datentyps für den Ausgabeschlüssel des Jobs
         job.setOutputKeyClass(Text.class);
         // Setzen des Datentyps für den Ausgabewert des Jobs
-        job.setOutputValueClass(Text.class);
+        job.setOutputValueClass(Text.class); // PointsGroup.class works also
 
         // Hinzufügen des Eingabeverzeichnisses zum MapReduce-Job
         FileInputFormat.addInputPath(job, new Path("output"));

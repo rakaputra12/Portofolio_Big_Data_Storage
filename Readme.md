@@ -109,11 +109,11 @@ Die Ergebnisse sollten folgendes aussehen:
 
 ### Für erstes MapReduceProgramm
 
-<img src="ss.png" width="700">
+<img src="ss.png" width="500">
 
 ### Für zweites MapReduceProgramm
 
-<img src="ss2.png" width="700">
+<img src="ss2.png" width="500">
 
 ----
 
@@ -137,11 +137,11 @@ Um eine JAR-Datei für Hadoop zu erstellen, sind diese Schritte durchzuführen:
 2. Öffnen Sie das Projekt/ den Ordner. (PortofolioBigData, wo **pom.xml** abgelegt ist)
 3. Öffnen Sie das Dropdown-Menü "Ansicht", "Tool-Fenster", "Maven".
 
-<img src="jar-1.png" width="500">
+<img src="jar-1.png" width="600">
 
 4. In dem neu geöffneten Fenster erweitern Sie den Lifecycle Ihres Projekts und klicken Sie auf "Kompilieren" und dann auf "Paketieren".
 
-<img src="jar-2.png" width="500">
+<img src="jar-2.png" width="600">
 
 5. Anschließend kann wieder in vorherige Anleitungen navigiert werden. [Zurück zur Anleitung](#5-ausführen-des-programms-1-flypoint)
 
