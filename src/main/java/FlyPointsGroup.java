@@ -13,43 +13,19 @@ import org.apache.hadoop.io.IntWritable;
 
 import java.io.DataInput;
 import java.io.DataOutput;
-import org.apache.hadoop.io.Writable;
+
 
 
 public class FlyPointsGroup {
 
-    // Klasse für die Gruppenpunkte als Writable
-    public static class PointsGroup implements Writable {
-        // Variablen für verdiente Punkte, eingelöste Punkte und Anzahl der Kunden in der Gruppe
-        private final IntWritable pointsEarned = new IntWritable();
-        private final IntWritable pointsRedeemed = new IntWritable();
+    // Klasse für die Gruppenpunkte als Erweiterung von PointsWritable in FlyPoint
+    public static class PointsGroup extends FlyPoint.PointsWritable {
+        // Variablen für Anzahl der Kunden in der Gruppe
         private final IntWritable customerCount = new IntWritable();
-
-        // Setze verdiente Punkte
-        public void setPointsEarned(int pointsEarned) {
-            this.pointsEarned.set(pointsEarned);
-        }
-
-        // Setze eingelöste Punkte
-        public void setPointsRedeemed(int pointsRedeemed) {
-            this.pointsRedeemed.set(pointsRedeemed);
-        }
-
         // Setze Anzahl der Kunden
         public void setCustomerCount(int customerCount) {
             this.customerCount.set(customerCount);
         }
-
-        // Holen der verdienten Punkte
-        public int getPointsEarned() {
-            return pointsEarned.get();
-        }
-
-        // Holen der eingelösten Punkte
-        public int getPointsRedeemed() {
-            return pointsRedeemed.get();
-        }
-
         // Holen der Anzahl der Kunden
         public int getCustomerCount() {
             return customerCount.get();
@@ -68,7 +44,6 @@ public class FlyPointsGroup {
             pointsRedeemed.readFields(in);
             customerCount.readFields(in);
         }
-
         // Konvertiere die Werte in einen String
         @Override
         public String toString() {
@@ -199,7 +174,7 @@ public class FlyPointsGroup {
         // Setzen des Datentyps für den Ausgabeschlüssel des Jobs
         job.setOutputKeyClass(Text.class);
         // Setzen des Datentyps für den Ausgabewert des Jobs
-        job.setOutputValueClass(Text.class); // PointsGroup.class works also
+        job.setOutputValueClass(Text.class);
 
         // Hinzufügen des Eingabeverzeichnisses zum MapReduce-Job
         FileInputFormat.addInputPath(job, new Path("output"));

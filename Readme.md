@@ -162,7 +162,7 @@ Folgendes ist eine kurze Beschreibung der Verarbeitungsschritte bei erstem Progr
 * Ein Schlüssel-Wert-Paar wird erzeugt, wobei der Schlüssel die Kunden-ID ist und der Wert das PointsWritable-Objekt.
 ### 2. Combiner-Klasse (PointsCombiner):
 
-* Die `reduce-Methode wird aufgerufen, um die Werte für jeden Schlüssel aus dem Mapper zu kombinieren.
+* Die `reduce`-Methode wird aufgerufen, um die Werte für jeden Schlüssel aus dem Mapper zu kombinieren.
 * Die verdienten und eingelösten Punkte für jeden Kunden werden summiert.
 * Ein neues **PointsWritable**-Objekt wird erstellt und mit den summierten Werten initialisiert.
 * Ein Schlüssel-Wert-Paar wird erzeugt, wobei der Schlüssel die Kunden-ID ist und der Wert das PointsWritable-Objekt.
@@ -224,8 +224,7 @@ Dazu ist eine Beschreibung der Verarbeitungsschritte:
 * Der Job wird ausgeführt, und das Programm wird beendet, abhängig von der erfolgreichen Ausführung des Jobs.
 
 Laut Best Practices aus der Vorlesung wird auch in dem Fall eine Klasse **PointsGroup** definiert.
-Die Klasse `PointsGroup` ist eine Implementierung des Hadoop Writable-Interfaces, ähnlich wie die Klasse `PointsWritable`.
-Im Gegensatz zur Klasse `PointsWritable` enthält diese Klasse drei Felder: **pointsEarned**, **pointsRedeemed** und **customerCount**. 
+Die Klasse `PointsGroup` ist eine Erweiterung von `PointsWritable`in der Klasse **FlyPoint**. So muss man keine neue Objekt-Klasse definieren. Im Gegensatz zur Klasse `PointsWritable` enthält diese Klasse im im Endeffekt drei Felder: **pointsEarned**, **pointsRedeemed** und **customerCount**. 
 Hier wird die Anzahl der Kunden in einer bestimmten Gruppe gespeichert.
 
 Die Entscheidung, die Anzahl der Kunden in einer bestimmten Gruppe in der Klasse `PointsGroup` zu speichern, könnte auf verschiedene Faktoren zurückzuführen sein:
@@ -234,7 +233,7 @@ Die Entscheidung, die Anzahl der Kunden in einer bestimmten Gruppe in der Klasse
 - Wenn ein  Combiner nicht verwendet werden würde, müssten alle Daten an die Reducer gesendet und dort aggregiert werden, was ineffizient sein kann, insbesondere wenn es sich um große Datenmengen handelt.
 - Auf der Aufgabenstellung muss man für beide Programm einen Combiner erstellen.
 - Tatsächlich kann das zweites Programm ohne Combiner realisiert werden, aber es widerspricht der Aufgabenstellung.
-- Ohne Verwendung der Combiner kann die Klasse `PointsWritable` wiederverwendet werden.
+- Ohne Verwendung der Combiner kann die Klasse `PointsWritable` einfach wiederverwendet werden.
 - Bei der Verwendung des Combiners muss die Objektklasse angepasst werden, da der Reducer sonst berechnet, dass die Anzahl der Kunden in einer Gruppe immer eins ist, weil sie zuvor im Combiner in einer Gruppe gespeichert wurde und bei einem Aufruf als eins gezählt wird.
 
 ## Quelle und Beitrag

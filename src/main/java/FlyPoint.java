@@ -20,8 +20,8 @@ public class FlyPoint {
     // Klasse für das Schreiben und Lesen von Punkten als Hadoop-Writable
     public static class PointsWritable implements Writable {
 
-        private final IntWritable pointsEarned = new IntWritable();
-        private final IntWritable pointsRedeemed = new IntWritable();
+        public final IntWritable pointsEarned = new IntWritable();
+        public final IntWritable pointsRedeemed = new IntWritable();
 
         // Setze verdiente Punkte
         public void setPointsEarned(int pointsEarned) {
@@ -167,7 +167,7 @@ public class FlyPoint {
         // Setzen des Datentyps für den Ausgabeschlüssel des Jobs
         job.setOutputKeyClass(Text.class);
         // Setzen des Datentyps für den Ausgabewert des Jobs
-        job.setOutputValueClass(PointsWritable.class);
+        job.setOutputValueClass(Text.class);
 
         // Hinzufügen des Eingabeverzeichnisses zum MapReduce-Job
         FileInputFormat.addInputPath(job, new Path("input"));
